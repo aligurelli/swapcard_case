@@ -1,0 +1,18 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "SwapCard - Ali Gurelli - Study Case"
+
+
+include(
+        ":app",
+        ":core",
+        ":features:home",
+        ":features:detail",
+        ":commons:ui",
+        ":commons:views"
+)
