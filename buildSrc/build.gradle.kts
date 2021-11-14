@@ -13,14 +13,11 @@ repositories {
     maven("https://ci.android.com/builds/submitted/5837096/androidx_snapshot/latest/repository")
 }
 
-kotlinDslPluginOptions {
-    experimentalWarning.set(false)
-}
 
 object PluginsVersions {
     const val GRADLE_ANDROID = "4.1.0"
     const val GRADLE_VERSIONS = "0.33.0"
-    const val KOTLIN = "1.4.10"
+    const val KOTLIN = "1.5.31"
     const val NAVIGATION = "2.3.0"
     const val GRAPH_GENERATOR = "0.6.0"
 }

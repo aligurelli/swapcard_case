@@ -1,27 +1,13 @@
-query Artists {
-
+query Artists($query : String!, $first :Int) {
     search {
-        artists(query: "John Mayer", first: 10, after: null) {
+        artists(query: $query first: $first, after: null) {
             nodes {
                 ...ArtistBasicFragment
             }
+            pageInfo {
+                hasNextPage
+            }
         }
-    }
-}
-
-query Artist {
-    node(id: "QXJ0aXN0OjE0NGVmNTI1LTg1ZTktNDBjMy04MzM1LTAyYzMyZDA4NjFmMw==") {
-        ...ArtistDetailsFragment
-    }
-}
-
-fragment ArtistDetailsFragment on Artist {
-    id
-    name
-    disambiguation
-    rating {
-        value
-        voteCount
     }
 }
 
@@ -29,4 +15,7 @@ fragment ArtistBasicFragment on Artist {
     id
     name
     disambiguation
+    type
+
 }
+

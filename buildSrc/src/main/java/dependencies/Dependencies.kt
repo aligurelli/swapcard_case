@@ -14,6 +14,7 @@ object Dependencies {
     const val CORE_KTX = "androidx.core:core-ktx:${BuildDependenciesVersions.CORE_KTX}"
     const val LOGGING = "com.squareup.okhttp3:logging-interceptor:${BuildDependenciesVersions.LOGGING}"
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${BuildDependenciesVersions.FRAGMENT_KTX}"
+    const val PAGING = "androidx.paging:paging-runtime:${BuildDependenciesVersions.PAGING}"
     const val CONSTRAIN_LAYOUT = "androidx.constraintlayout:constraintlayout:${BuildDependenciesVersions.CONSTRAIN_LAYOUT}"
     const val KOIN = "io.insert-koin:koin-core:${BuildDependenciesVersions.KOIN}"
     const val KOIN_COMPOSE = "io.insert-koin:koin-androidx-compose:${BuildDependenciesVersions.KOIN}"

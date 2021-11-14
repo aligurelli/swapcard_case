@@ -9,6 +9,7 @@ object BuildDependenciesVersions {
     const val CORE_KTX = "1.3.2"
     const val LOGGING = "4.9.0"
     const val FRAGMENT_KTX = "1.2.5"
+    const val PAGING = "3.0.1"
     const val CONSTRAIN_LAYOUT = "2.0.2"
     const val GLIDE = "4.12.0"
     const val LEAKCANARY = "2.5"

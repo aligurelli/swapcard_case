@@ -9,8 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel>(
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     @LayoutRes
     private val layoutId: Int
 ) : Fragment() {
@@ -23,6 +24,8 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel>(
         get() = _viewBinding as VB
 
     abstract fun prepareView()
+    abstract fun onInitDataBinding()
+    abstract fun observe()
 
 
     override fun onCreateView(
@@ -31,7 +34,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel>(
         savedInstanceState: Bundle?
     ): View? {
         _viewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        _viewBinding.lifecycleOwner = viewLifecycleOwner
         return _viewBinding.root
     }
 
@@ -39,6 +41,8 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         prepareView()
+        onInitDataBinding()
+        observe()
     }
 
 

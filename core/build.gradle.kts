@@ -16,6 +16,8 @@ android {
 }
 
 dependencies {
+
+
     api(Dependencies.KOIN)
     api(Dependencies.KOIN_COMPOSE)
 
@@ -23,8 +25,8 @@ dependencies {
     implementation(Dependencies.ROOM_KTX)
     implementation(Dependencies.CORE_KTX)
     implementation(Dependencies.LOGGING)
+    implementation(Dependencies.PAGING)
 
-    kapt(AnnotationProcessorsDependencies.DATABINDING)
     kapt(AnnotationProcessorsDependencies.ROOM)
 
 }

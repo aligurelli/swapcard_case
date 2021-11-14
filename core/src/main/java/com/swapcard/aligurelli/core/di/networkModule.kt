@@ -1,4 +1,4 @@
-package com.swapcard.aligurelli.core.di
+package com.aligurelli.swapcard.di
 
 import com.apollographql.apollo.ApolloClient
 import okhttp3.OkHttpClient

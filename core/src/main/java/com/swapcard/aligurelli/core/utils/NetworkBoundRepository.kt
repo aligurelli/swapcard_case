@@ -6,29 +6,27 @@ import com.apollographql.apollo.api.Response
 import kotlinx.coroutines.flow.*
 
 
-abstract class NetworkBoundRepository<RESPONSE : Operation.Data> {
+abstract class NetworkBoundRepository<RESPONSE> {
 
-    fun asFlow() = flow {
 
-        //to show loading
-        emit(NetworkResult.Loading())
+    fun asFlow() = flow<NetworkResult<RESPONSE>> {
 
-        //fetch latest data from remote
+        // Fetch latest data from remote
         val apiResponse = fetchFromRemote()
 
-        //get body
+        // Parse body
         val remoteData = apiResponse.data
 
-        //Check for response validation
+        // Check for response validation
         if (!apiResponse.hasErrors() && remoteData != null) {
             emit(NetworkResult.Success(remoteData))
-
         } else {
-            emit(NetworkResult.Failed(apiResponse.errors?.get(0)?.message!!))
+            emit(NetworkResult.Failed("Network error! Can't get latest data."))
+
         }
 
     }.catch { e ->
-        Log.e("ERROR", e.message.toString())
+        Log.d("ERROR", e.message.toString())
         e.printStackTrace()
         emit(NetworkResult.Failed("Network error! Can't get latest data."))
     }

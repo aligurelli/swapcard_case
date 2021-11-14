@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 
 }
 
@@ -33,6 +34,10 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    dataBinding {
+        enabled = true
+    }
     dynamicFeatures = [':features:home', ':features:detail']
 
     sourceSets {
@@ -45,6 +50,8 @@ android {
 
 dependencies {
     implementation(project(BuildModules.CORE))
+    //implementation(project(BuildModules.DI))
+
 
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.APPCOMPAT)

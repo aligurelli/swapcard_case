@@ -1,40 +1,54 @@
 package com.swapcard.feature.home
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import com.swapcard.aligurelli.core.network.repositories.SampleRepo
-import com.swapcard.aligurelli.core.utils.NetworkResult
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
+import com.swapcard.feature.home.adapter.HomepageTablayoutAdapter
+import com.swapcard.feature.home.databinding.FragmentHomeBinding
+import com.swapcard.feature.home.di.HomeViewModelModule
+import com.swarcards.commons.ui.base.BaseFragment
+import com.swarcards.commons.ui.extensions.observe
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
-class HomeFragment : Fragment() {
 
-    val sampleRepo: SampleRepo by inject()
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(layoutId = R.layout.fragment_home){
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch {
-                sampleRepo.send().collect {
-                    when(it){
-                        is NetworkResult.Success -> Log.e("tahh", it.data.node?.fragments?.artistDetailsFragment?.name!!)
+    override val viewModel: HomeViewModel by viewModel()
 
-                    }
-                }
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        loadKoinModules(HomeViewModelModule)
 
     }
+
+    @ObsoleteCoroutinesApi
+    @FlowPreview
+    @ExperimentalCoroutinesApi
+    override fun prepareView() {
+        //setup viewpager
+        val adapter = HomepageTablayoutAdapter(this.childFragmentManager)
+        adapter.addFragment(TabFragment(), "Artists")
+        adapter.addFragment(TabFragment(), "Bookmarked")
+
+        binding.viewpagerFragmentHome.adapter = adapter
+
+        //bind tablayout with pager
+        binding.tablayoutFragmentHome.setupWithViewPager(binding.viewpagerFragmentHome)
+
+    }
+
+    override fun onInitDataBinding() {
+        binding.viewModel = viewModel
+
+    }
+
+    override fun observe() {
+       observe(viewModel.searchedArtistList) {
+
+       }
+    }
+
 }

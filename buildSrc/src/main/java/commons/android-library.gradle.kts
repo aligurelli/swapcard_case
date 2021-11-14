@@ -5,8 +5,6 @@ plugins {
     id("kotlin-android")
     id("kotlin-android-extensions")
     id("kotlin-kapt")
-    id("kotlin-allopen")
-    id("com.vanniktech.dependency.graph.generator")
 
 
 }
@@ -51,6 +49,8 @@ android {
 
 
 dependencies {
+    //implementation(project(BuildModules.Features.HOME))
+
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.COROUTINES)
     implementation(Dependencies.COROUTINES_ANDROID)
