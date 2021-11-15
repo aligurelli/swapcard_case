@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    android:id="@+id/app_navigation_graph"
+    app:startDestination="@id/featureArtistNavGraph">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.swapcard.feature.home.HomeFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+    <include-dynamic
+        android:id="@+id/featureArtistNavGraph"
+        app:graphResName="feature_artist_nav_graph"
+        app:moduleName="artist"/>
 
-    </fragment>
+
 </navigation>

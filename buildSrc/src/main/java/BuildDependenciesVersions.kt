@@ -4,7 +4,7 @@ object BuildDependenciesVersions {
     const val MATERIAL = "1.2.1"
     const val COROUTINES = "1.3.9"
     const val ROOM = "2.3.0"
-    const val NAVIGATION = "2.3.0"
+    const val NAVIGATION = "2.3.4"
     const val LIFECYCLE = "2.2.0"
     const val CORE_KTX = "1.3.2"
     const val LOGGING = "4.9.0"

@@ -38,7 +38,7 @@ android {
     dataBinding {
         enabled = true
     }
-    dynamicFeatures = [':features:home', ':features:detail']
+    dynamicFeatures = [':artist']
 
     sourceSets {
         getByName("main") {
@@ -63,6 +63,7 @@ dependencies {
     implementation(Dependencies.KOIN_COMPOSE)
     implementation(Dependencies.APOLLO)
     implementation(Dependencies.APOLLO_COROUTINE)
+    implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.5'
 
     debugImplementation(DebugDependencies.LEAKCANARY)
 

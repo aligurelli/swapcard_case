@@ -12,4 +12,5 @@
     <string name="title_dynamicfeature">home</string>
     <string name="title_home">Module Title</string>
     <string name="title_detail">detail</string>
+    <string name="title_artist">artist</string>
 </resources>

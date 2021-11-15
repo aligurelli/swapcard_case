@@ -11,8 +11,7 @@ rootProject.name = "SwapCard - Ali Gurelli - Study Case"
 include(
         ":app",
         ":core",
-        ":features:home",
-        ":features:detail",
+        ':artist',
         ":commons:ui",
         ":commons:views"
 )

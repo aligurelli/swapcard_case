@@ -18,7 +18,7 @@ android {
     }
 
     buildTypes.forEach {
-        it.buildConfigStringField("SWAPCARD_API_BASE_URL", "https://gateway.marvel.com/")
+        it.buildConfigStringField("SWAPCARD_API_BASE_URL", "https://graphbrainz.herokuapp.com/")
         it.buildConfigStringField("SWAPCARD_DATABASE_NAME", "bookmarked.artist-db")
         it.buildConfigIntField("SWAPCARD_DATABASE_VERSION", 1)
     }

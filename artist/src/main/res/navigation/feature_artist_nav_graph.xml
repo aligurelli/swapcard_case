@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:moduleName="artist"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.swapcard.feature.home.HomeFragment"
+        android:label="HomeFragment"
+        app:moduleName="artist">
+        <action
+            android:id="@+id/actionArtistDetail"
+            app:destination="@id/artistDetailFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="com.swapcard.feature.detail.ArtistDetailFragment"
+        android:label="AlbumDetailFragment"
+        app:moduleName="artist">
+    </fragment>
+</navigation>
