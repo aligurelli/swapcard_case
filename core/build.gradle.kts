@@ -1,3 +1,6 @@
+import extensions.buildConfigBooleanField
+import extensions.buildConfigIntField
+import extensions.buildConfigStringField
 
 plugins {
     id("commons.android-library")
@@ -12,6 +15,12 @@ android {
     }
     apollo {
         generateKotlinModels.set(true) // or false for Java models
+    }
+
+    buildTypes.forEach {
+        it.buildConfigStringField("SWAPCARD_API_BASE_URL", "https://gateway.marvel.com/")
+        it.buildConfigStringField("SWAPCARD_DATABASE_NAME", "bookmarked.artist-db")
+        it.buildConfigIntField("SWAPCARD_DATABASE_VERSION", 1)
     }
 }
 

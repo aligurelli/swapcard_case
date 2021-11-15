@@ -1,7 +1,7 @@
 package com.aligurelli.studycse
 
 import android.app.Application
-import com.aligurelli.swapcard.di.networkModule
+import com.swapcard.aligurelli.core.di.networkModule
 import com.swapcard.aligurelli.core.di.repositoryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin

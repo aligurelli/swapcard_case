@@ -34,22 +34,11 @@ android {
         isExperimental = true
     }
 
-
-
-    sourceSets {
-        getByName("main") {
-            java.srcDir("src/main/kotlin")
-        }
-
-    }
-
-
 }
 
 
 
 dependencies {
-    //implementation(project(BuildModules.Features.HOME))
 
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.COROUTINES)

@@ -1,6 +1,7 @@
-package com.aligurelli.swapcard.di
+package com.swapcard.aligurelli.core.di
 
 import com.apollographql.apollo.ApolloClient
+import com.swapcard.aligurelli.core.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -24,7 +25,7 @@ fun provideOkHttpClient(): OkHttpClient {
 fun provideApolloClient(okHttpClient: OkHttpClient): ApolloClient {
 
     return  ApolloClient.builder().
-        serverUrl("https://graphbrainz.herokuapp.com")
+        serverUrl(BuildConfig.SWAPCARD_API_BASE_URL)
         .okHttpClient(okHttpClient)
         .build()
 }
