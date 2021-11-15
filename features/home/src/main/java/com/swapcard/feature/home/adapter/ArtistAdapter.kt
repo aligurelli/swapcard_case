@@ -2,40 +2,42 @@ package com.swapcard.feature.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.swapcard.aligurelli.core.network.responses.Artist
 import com.swapcard.feature.home.databinding.RowArtistBinding
+import com.swarcards.commons.ui.base.BasePagedListAdapter
+import com.swarcards.commons.ui.base.BaseViewHolder
 
 class ArtistAdapter(var clickListener: (Artist) -> Unit ) :
-    PagingDataAdapter<Artist, ArtistAdapter.ArtistViewHolder>(ArtistComparator) {
+    BasePagedListAdapter<Artist>(
+        itemsSame = { old, new -> old.id == new.id },
+        contentsSame = { old, new -> old == new }
+    ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ArtistViewHolder(
-            RowArtistBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-        )
-
-    override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        inflater: LayoutInflater,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+        return ArtistViewHolder(inflater)
     }
 
-    inner class ArtistViewHolder(private val binding: RowArtistBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: Artist) = with(binding) {
-            artist = item
-            executePendingBindings()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is ArtistViewHolder) {
+            holder.bind(getItem(position))
         }
     }
 
-    object ArtistComparator : DiffUtil.ItemCallback<Artist>() {
-        override fun areItemsTheSame(oldItem: Artist, newItem: Artist) =
-            oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Artist, newItem: Artist) =
-            oldItem == newItem
+    inner class ArtistViewHolder(inflater: LayoutInflater) :
+        BaseViewHolder<RowArtistBinding>(
+            binding = RowArtistBinding.inflate(inflater)
+        ) {
+
+        fun bind( item: Artist?) {
+            binding.artist = item
+            binding.executePendingBindings()
+        }
     }
+
 }

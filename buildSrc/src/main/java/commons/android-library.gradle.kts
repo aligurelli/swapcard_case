@@ -54,6 +54,7 @@ dependencies {
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.COROUTINES)
     implementation(Dependencies.COROUTINES_ANDROID)
+    implementation(Dependencies.PAGING)
     api(Dependencies.APOLLO)
     implementation(Dependencies.APOLLO_COROUTINE)
 

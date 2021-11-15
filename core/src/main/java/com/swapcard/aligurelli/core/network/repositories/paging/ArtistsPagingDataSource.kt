@@ -18,13 +18,16 @@ class ArtistsPagingDataSource(
         val currentLoadingPageKey = params.key ?: 15
         return try {
             var response : ArtistsQuery.Data ?= null
-            repository.getSearchedList(query, currentLoadingPageKey).collect {
+
+            //get searched query by pagination from remote
+            getSearchedQueryByPagination(currentLoadingPageKey).collect {
                 response = when(it){
                     is NetworkResult.Success -> it.data
                     else -> null
                 }
             }
 
+            //map to our object
              val data =response?.search?.artists?.nodes?.map { fetchedArtist ->
                 Artist(
                     id = fetchedArtist?.fragments?.artistBasicFragment?.id!!, //should be crash if id is null to notify developers something went wrong on BE side.
@@ -34,6 +37,7 @@ class ArtistsPagingDataSource(
                 )
             }
 
+            //adjust pagination params
             data?.let {
                 val prevKey = if (currentLoadingPageKey == 1) null else currentLoadingPageKey - initial
                 LoadResult.Page(
@@ -53,5 +57,7 @@ class ArtistsPagingDataSource(
 
     override fun getRefreshKey(state: PagingState<Int, Artist>): Int = 15
     override val keyReuseSupported: Boolean = true
+
+    private fun getSearchedQueryByPagination(currentLoadingPageKey : Int)  = repository.getSearchedList(query, currentLoadingPageKey)
 
 }

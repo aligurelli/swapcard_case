@@ -2,17 +2,19 @@ package com.swarcards.commons.ui.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-
-abstract class BaseListAdapter<T>(
+abstract class BasePagedListAdapter<T : Any>(
     itemsSame: (T, T) -> Boolean,
     contentsSame: (T, T) -> Boolean
-) : ListAdapter<T, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<T>() {
+) : PagingDataAdapter<T, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<T>() {
     override fun areItemsTheSame(old: T, new: T): Boolean = itemsSame(old, new)
     override fun areContentsTheSame(old: T, new: T): Boolean = contentsSame(old, new)
 }) {
+
+
+    private var recyclerView: RecyclerView? = null
 
     abstract fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,4 +28,16 @@ abstract class BaseListAdapter<T>(
             inflater = LayoutInflater.from(parent.context),
             viewType = viewType
         )
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        this.recyclerView = recyclerView
+        super.onAttachedToRecyclerView(recyclerView)
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        this.recyclerView = null
+        super.onDetachedFromRecyclerView(recyclerView)
+    }
+
+
 }
