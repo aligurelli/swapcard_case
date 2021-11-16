@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="artist"
-            type="com.swapcard.aligurelli.core.network.responses.Artist" />
+            name="bookMarkedArtist"
+            type="com.swapcard.aligurelli.core.database.artistbookmark.BookmarkedArtist" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -29,7 +29,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:text="@{artist.name}"
+                android:text="@{bookMarkedArtist.name}"
                 android:textSize="16sp"
                 android:lines="2"
                 android:maxLines="2"
@@ -50,26 +50,13 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:text="@{artist.disambiguation}"
+                android:text="@{bookMarkedArtist.disambiguation}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name"
                 tools:text="Disambiguation" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:text="@{artist.type}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_disambiguation"
-                tools:text="Type" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

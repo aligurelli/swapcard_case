@@ -9,7 +9,10 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
-class ArtistDetailViewModel(private val artistDetailRepo: DetailRepository, private val bookmarkRepo: BookmarkRepository) : ViewModel() {
+class ArtistDetailViewModel(
+    private val artistDetailRepo: DetailRepository,
+    private val bookmarkRepo: BookmarkRepository
+) : ViewModel() {
 
     private lateinit var artistID: String
 
@@ -30,7 +33,7 @@ class ArtistDetailViewModel(private val artistDetailRepo: DetailRepository, priv
 
 
     fun getArtistDetail() {
-        _state.postValue(ArtistDetailViewState.Loading)
+        _state.value = ArtistDetailViewState.Loading
 
         viewModelScope.launch {
             artistDetailRepo.getArtistDetail(artistID).collect {
@@ -38,6 +41,7 @@ class ArtistDetailViewModel(private val artistDetailRepo: DetailRepository, priv
 
                 when (it) {
                     is NetworkResult.Success -> {
+                        //set data
                         _data.value = ArtistDetailResponse(
                             id = it.data.node?.fragments?.artistDetailsFragment?.id!!,
                             name = it.data.node?.fragments?.artistDetailsFragment?.name,
@@ -45,26 +49,26 @@ class ArtistDetailViewModel(private val artistDetailRepo: DetailRepository, priv
                             rating = it.data.node?.fragments?.artistDetailsFragment?.rating?.value
                         )
 
-                        _state.postValue(ArtistDetailViewState.FETCHED)
+                        //change state
+                        _state.value = ArtistDetailViewState.FETCHED
 
-
+                        //check bookmark status
                         bookmarkRepo.getBookmarkedArtistWithID(artistID)?.let {
-                            _state.postValue(ArtistDetailViewState.AlreadyAddedToFavorite)
+                            _state.value = ArtistDetailViewState.AlreadyAddedToFavorite
                         } ?: run {
-                            _state.postValue(ArtistDetailViewState.AddToFavorite)
+                            _state.value = ArtistDetailViewState.AddToFavorite
                         }
 
                     }
 
-                    is NetworkResult.Failed -> _state.postValue(ArtistDetailViewState.Error)
-
+                    is NetworkResult.Failed -> _state.value = ArtistDetailViewState.Error
                 }
 
             }
         }
     }
 
-    fun addArtistToBookmarks(){
+    fun addArtistToBookmarks() {
         _data.value?.let {
             viewModelScope.launch {
                 bookmarkRepo.insertArtistToBookmarks(
@@ -73,7 +77,7 @@ class ArtistDetailViewModel(private val artistDetailRepo: DetailRepository, priv
                     disambiguation = it.disambiguation!!,
                 )
 
-                _state.postValue(ArtistDetailViewState.AddedToFavorite)
+                _state.value = ArtistDetailViewState.AddedToFavorite
             }
         }
     }

@@ -1,9 +1,12 @@
 package com.swapcard.feature.home
 
 import android.os.Bundle
-import com.swapcard.feature.home.adapter.HomepageTablayoutAdapter
+import com.swapcard.feature.home.adapter.HomepagePagerAdapter
 import com.swapcard.feature.home.databinding.FragmentHomeBinding
 import com.swapcard.feature.di.ArtistViewModelModule
+import com.swapcard.feature.home.adapter.BookmarkedArtistsAdapter
+import com.swapcard.feature.home.tab.BookmarkedArtistFragment
+import com.swapcard.feature.home.tab.SearchArtistFragment
 import com.swarcards.commons.ui.base.BaseFragment
 import com.swarcards.commons.ui.extensions.observe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -35,9 +38,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(layoutId =
     @ExperimentalCoroutinesApi
     override fun prepareView() {
         //setup viewpager
-        val adapter = HomepageTablayoutAdapter(this.childFragmentManager)
-        adapter.addFragment(TabFragment(), "Artists")
-        adapter.addFragment(TabFragment(), "Bookmarked")
+        val adapter = HomepagePagerAdapter(this.childFragmentManager).apply {
+            addFragment(SearchArtistFragment(), "Artists")
+            addFragment(BookmarkedArtistFragment(), "Bookmarked")
+        }
 
         binding.viewpagerFragmentHome.adapter = adapter
 

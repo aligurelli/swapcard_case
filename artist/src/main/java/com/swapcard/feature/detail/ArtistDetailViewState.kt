@@ -18,7 +18,10 @@ sealed class ArtistDetailViewState : BaseViewState {
     object AlreadyAddedToFavorite : ArtistDetailViewState()
 
 
-
+    /**
+     * Check if current view state is [AddToFavorite].
+     * means that the artist can be added to bookmarks(not bookmarked yet)
+     */
     fun isAddToFavorite() = this is AddToFavorite
 
 }
