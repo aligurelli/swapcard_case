@@ -24,4 +24,11 @@ class BookmarkRepository (
         )
         bookmarkedArtistDao.insertArtistToBookmarks(artistToBookmarked)
     }
+
+
+    /**
+     * just for unit testing
+     */
+    suspend fun insertArtistsToBookmarked(artists: List<BookmarkedArtist>) =
+        bookmarkedArtistDao.insertArtistsToBookmarks(artists)
 }

@@ -1,5 +1,7 @@
 package commons
 
+import extensions.addTestsDependencies
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -44,8 +46,10 @@ dependencies {
     implementation(Dependencies.COROUTINES)
     implementation(Dependencies.COROUTINES_ANDROID)
     implementation(Dependencies.PAGING)
-    api(Dependencies.APOLLO)
     implementation(Dependencies.APOLLO_COROUTINE)
 
+    api(Dependencies.APOLLO)
+
+    addTestsDependencies()
 
 }

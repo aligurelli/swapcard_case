@@ -25,4 +25,8 @@ interface BookmarkedArtistDao {
     suspend fun getBookmarkedArtistWithID(artistID: String): BookmarkedArtist?
 
 
+    @Insert
+    fun insertArtistsToBookmarks(artists: List<BookmarkedArtist>)
+
+
 }

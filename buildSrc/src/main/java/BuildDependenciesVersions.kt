@@ -16,4 +16,14 @@ object BuildDependenciesVersions {
     const val DATABINDING = "3.1.4"
     const val KOIN = "3.1.3"
     const val APOLLO = "2.5.9"
+
+    // Tests
+    const val TEST = "1.3.0"
+    const val EXT = "1.1.2"
+    const val ARCH_CORE = "2.1.0"
+    const val JUNIT = "4.13.1"
+    const val MOCKK = "1.10.2"
+    const val ASSERTJ = "3.17.2"
+    const val ROBOELECTRIC = "4.4"
+
 }

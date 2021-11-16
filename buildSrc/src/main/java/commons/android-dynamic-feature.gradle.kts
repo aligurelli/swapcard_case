@@ -1,6 +1,9 @@
 
 package commons
 
+import extensions.addTestsDependencies
+
+
 plugins {
     id("com.android.dynamic-feature")
     id("kotlin-android")
@@ -77,5 +80,8 @@ dependencies {
 
     //kapt(AnnotationProcessorsDependencies.DATABINDING)
     kapt(AnnotationProcessorsDependencies.ROOM)
+
+    addTestsDependencies()
+
 
 }
