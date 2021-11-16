@@ -6,6 +6,8 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.swapcards.common.view.databinding.ViewProgressDialogBinding
 import com.swarcards.commons.ui.extensions.getString
+import android.view.ContextThemeWrapper
+
 
 class ProgressBarDialog(
     context: Context
@@ -20,6 +22,8 @@ class ProgressBarDialog(
 
     fun show(@StringRes messageRes: Int?) {
         super.show()
+
+
         viewBinding = ViewProgressDialogBinding.inflate(LayoutInflater.from(context))
         setContentView(viewBinding.root)
         setCanceledOnTouchOutside(false)

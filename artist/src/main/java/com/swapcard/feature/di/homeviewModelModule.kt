@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 val ArtistViewModelModule = module {
     viewModel { HomeViewModel(get()) }
-    viewModel { ArtistDetailViewModel(get()) }
+    viewModel { ArtistDetailViewModel(get(), get()) }
 
 
 

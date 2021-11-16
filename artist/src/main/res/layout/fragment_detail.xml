@@ -1,17 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <data>
         <variable
-            name="artist"
-            type="com.swapcard.aligurelli.core.network.responses.Artist" />
+            name="viewModel"
+            type="com.swapcard.feature.detail.ArtistDetailViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/purple_200"
         >
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/artistName"
+            android:text="@{viewModel.data.name}"
+            tools:text = "Artist Name"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/artistName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/disambiguation"
+            android:text="@{viewModel.data.disambiguation}"
+
+            tools:text = "Disambiguation"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/disambiguation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{viewModel.data.rating.toString()}"
+            android:id="@+id/average"
+            tools:text = "3"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/add_favorite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/average"
+            android:onClick="@{() -> viewModel.addArtistToBookmarks()}"
+            app:visibleIf="@{viewModel.state.isAddToFavorite()}"
+            app:srcCompat="@drawable/ic_favorites" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

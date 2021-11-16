@@ -10,6 +10,5 @@ data class BookmarkedArtist(
     @PrimaryKey val id: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "disambiguation") val disambiguation: String,
-    @ColumnInfo(name = "type") val type: String,
 
 )

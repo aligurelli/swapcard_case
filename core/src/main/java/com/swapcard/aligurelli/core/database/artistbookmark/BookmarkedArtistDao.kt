@@ -19,4 +19,10 @@ interface BookmarkedArtistDao {
 
     @Insert
     suspend fun insertArtistToBookmarks(artist: BookmarkedArtist)
+
+
+    @Query("SELECT * FROM artist_bookmarked WHERE id = :artistID")
+    suspend fun getBookmarkedArtistWithID(artistID: String): BookmarkedArtist?
+
+
 }

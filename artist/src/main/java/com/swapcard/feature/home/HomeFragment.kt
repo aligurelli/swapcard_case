@@ -26,6 +26,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(layoutId =
 
     }
 
+    override fun onInitDataBinding() {
+
+    }
+
     @ObsoleteCoroutinesApi
     @FlowPreview
     @ExperimentalCoroutinesApi
@@ -42,10 +46,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(layoutId =
 
     }
 
-    override fun onInitDataBinding() {
-        binding.viewModel = viewModel
-
-    }
 
     override fun observe() {
        observe(viewModel.searchedArtistList) {

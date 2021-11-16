@@ -35,6 +35,7 @@ dependencies {
     implementation(Dependencies.CORE_KTX)
     implementation(Dependencies.LOGGING)
     implementation(Dependencies.PAGING)
+    implementation(project(mapOf("path" to ":commons:views")))
 
     kapt(AnnotationProcessorsDependencies.ROOM)
 

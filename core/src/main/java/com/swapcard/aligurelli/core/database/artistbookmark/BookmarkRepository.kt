@@ -1,7 +1,7 @@
 package com.swapcard.aligurelli.core.database.artistbookmark
 
 
-class BookmarkedArtistRepository (
+class BookmarkRepository (
     private val bookmarkedArtistDao: BookmarkedArtistDao
 ) {
 
@@ -12,12 +12,15 @@ class BookmarkedArtistRepository (
     suspend fun deleteBookmarkedArtist(artist: BookmarkedArtist) =
         bookmarkedArtistDao.deleteBoormarkedArtist(artist)
 
-    suspend fun insertArtistToBookmarks(id: String, name: String, disambiguation : String, type : String) {
+
+    suspend fun getBookmarkedArtistWithID(artistID: String): BookmarkedArtist? =
+        bookmarkedArtistDao.getBookmarkedArtistWithID(artistID)
+
+    suspend fun insertArtistToBookmarks(id: String, name: String, disambiguation : String) {
         val artistToBookmarked = BookmarkedArtist(
             id = id,
             name = name,
             disambiguation = disambiguation,
-            type = type
         )
         bookmarkedArtistDao.insertArtistToBookmarks(artistToBookmarked)
     }

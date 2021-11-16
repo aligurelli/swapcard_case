@@ -2,4 +2,7 @@
 <resources>
 
     <string name="hint">type to search</string>
+    <string name="loading">loading</string>
+    <string name="error">error</string>
+    <string name="added_into_bookmarks">added to bookmarks</string>
 </resources>

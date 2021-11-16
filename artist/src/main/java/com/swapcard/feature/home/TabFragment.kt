@@ -38,13 +38,13 @@ class TabFragment : BaseFragment<FragmentTabBinding, HomeViewModel>(R.layout.fra
             .launchIn(lifecycleScope)
     }
 
-    override fun onInitDataBinding() {
-        binding.searchVisible = true
-    }
 
     override fun observe() {
        observe(viewModel.searchedArtistList){
            lifecycleScope.launch { searchedArtistListAdapter.submitData(it) }
        }
+    }
+
+    override fun onInitDataBinding() {
     }
 }
