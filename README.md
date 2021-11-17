@@ -8,6 +8,7 @@
 * [Mockk.io](https://mockk.io)
 * [Dynamic Features](https://proandroiddev.com/developing-your-own-dynamic-feature-3c48378e3065)
 * [Modularization](https://medium.com/ne-digital/a-cleaner-way-to-modular-architecture-in-android-2608795f09b6)
+* [Gradle Dependency Managament](https://proandroiddev.com/gradle-dependency-management-with-kotlin-94eed4df9a28)
 
 
 # modules has sample unittests:
