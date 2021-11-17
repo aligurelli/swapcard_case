@@ -1,5 +1,5 @@
 # Technology used
-* [Jetpack Compose(MVVM, Paging Library, Nagitaion, Room](https://developer.android.com/jetpack/compose)
+* [Jetpack Compose(MVVM, Paging Library, Nagitaion, Room)](https://developer.android.com/jetpack/compose)
 * [Android Databinding](https://developer.android.com/topic/libraries/data-binding/index.html)
 * [Android View Binding](https://developer.android.com/topic/libraries/view-binding)
 * [Koin for Dependency Injection](https://insert-koin.io)
