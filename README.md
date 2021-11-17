@@ -16,6 +16,12 @@
 * :artist/
 * :core/
 
+# known issues
+
+* i could not apply plugin modules by using constants. i guess somethings has changed with latest gradle version. i have tried to find a solution about that but could not success for yetr.
+* when we use koin for dependency injection unfortnuetly we must load related modules when we open any dynamic feature. as i know koin developers are still working on this issue.
+
+
 
 
 
