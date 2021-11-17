@@ -18,6 +18,7 @@
 
 * i could not apply plugin modules by using constants. i guess somethings has changed with latest gradle version. i have tried to find a solution about that but could not success for yetr.
 * when we use koin for dependency injection unfortnuetly we must load related modules when we open any dynamic feature. as i know koin developers are still working on this issue.
+* could not write module level repos unittest due to i had implemented it **untestable** when i developed it. today i fixed this problem and these repos are **testable** but i could not apply unit testing due to i am in shifting time.
 
 
 
