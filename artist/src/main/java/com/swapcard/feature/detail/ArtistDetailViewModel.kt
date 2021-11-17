@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 
 class ArtistDetailViewModel(
-    private val artistArtistDetailRepo: ArtistDetailRepository,
+    private val artistDetailRepo: ArtistDetailRepository,
     private val bookmarkRepo: BookmarkRepository
 ) : ViewModel() {
 
@@ -35,7 +35,7 @@ class ArtistDetailViewModel(
     fun getArtistDetail() {
 
         viewModelScope.launch {
-            artistArtistDetailRepo.getArtistDetail(artistID).collect {
+            artistDetailRepo.getArtistDetail(artistID).collect {
                 when (it) {
                     is NetworkResult.Success -> {
                         //set data

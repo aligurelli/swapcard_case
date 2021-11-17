@@ -29,7 +29,7 @@ class ArtistDetailViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @MockK(relaxed = true)
-    lateinit var artistArtistDetailRepo: ArtistDetailRepository
+    lateinit var artistDetailRepo: ArtistDetailRepository
 
     @MockK(relaxed = true)
     lateinit var bookmarkRepo: BookmarkRepository
@@ -45,7 +45,7 @@ class ArtistDetailViewModelTest {
     fun setUp() {
         MockKAnnotations.init(this)
         viewModel = ArtistDetailViewModel(
-            artistDetailRepo = artistArtistDetailRepo,
+            artistDetailRepo = artistDetailRepo,
             bookmarkRepo = bookmarkRepo,
         )
         viewModel.setArtistIDToFetch("TEST_ID")
@@ -56,7 +56,7 @@ class ArtistDetailViewModelTest {
     @Test
     fun getArtistDetail_WhenReturnError_NetworkShouldBeErrorState() {
         //given
-        coEvery { artistArtistDetailRepo.getArtistDetail(any()) } returns
+        coEvery { artistDetailRepo.getArtistDetail(any()) } returns
                 flow {
                     emit(
                         NetworkResult.Failed<ArtistDetailQuery.Data>("an error occured")
@@ -95,7 +95,7 @@ class ArtistDetailViewModelTest {
         every { artistDetailQueryData.node?.fragments?.artistDetailsFragment?.rating?.value } returns 0.0
         every { artistDetailQueryData.node?.fragments?.artistDetailsFragment?.rating?.voteCount } returns 1
         coEvery { bookmarkRepo.getBookmarkedArtistWithID(any()) } returns bookmarkedArtist
-        coEvery { artistArtistDetailRepo.getArtistDetail(any()) } returns
+        coEvery { artistDetailRepo.getArtistDetail(any()) } returns
 
                 flow {
                     emit(
