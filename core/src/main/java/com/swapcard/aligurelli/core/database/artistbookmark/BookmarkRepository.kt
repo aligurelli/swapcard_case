@@ -1,5 +1,7 @@
 package com.swapcard.aligurelli.core.database.artistbookmark
 
+import org.jetbrains.annotations.TestOnly
+
 
 class BookmarkRepository (
     private val bookmarkedArtistDao: BookmarkedArtistDao
@@ -7,11 +9,6 @@ class BookmarkRepository (
 
     suspend fun getAllBookmarkedArtist(): List<BookmarkedArtist> =
         bookmarkedArtistDao.getAllBookmarkedArtists()
-
-
-    suspend fun deleteBookmarkedArtist(artist: BookmarkedArtist) =
-        bookmarkedArtistDao.deleteBoormarkedArtist(artist)
-
 
     suspend fun getBookmarkedArtistWithID(artistID: String): BookmarkedArtist? =
         bookmarkedArtistDao.getBookmarkedArtistWithID(artistID)
@@ -26,9 +23,7 @@ class BookmarkRepository (
     }
 
 
-    /**
-     * just for unit testing
-     */
+    @TestOnly
     suspend fun insertArtistsToBookmarked(artists: List<BookmarkedArtist>) =
         bookmarkedArtistDao.insertArtistsToBookmarks(artists)
 }

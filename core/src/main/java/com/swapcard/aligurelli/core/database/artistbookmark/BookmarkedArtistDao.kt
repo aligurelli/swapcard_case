@@ -14,8 +14,6 @@ interface BookmarkedArtistDao {
     suspend fun getAllBookmarkedArtists(): List<BookmarkedArtist>
 
 
-    @Delete
-    suspend fun deleteBoormarkedArtist(artist: BookmarkedArtist)
 
     @Insert
     suspend fun insertArtistToBookmarks(artist: BookmarkedArtist)

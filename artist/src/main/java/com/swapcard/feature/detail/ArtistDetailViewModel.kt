@@ -33,12 +33,9 @@ class ArtistDetailViewModel(
 
 
     fun getArtistDetail() {
-        _state.value = ArtistDetailViewState.Loading
 
         viewModelScope.launch {
             artistDetailRepo.getArtistDetail(artistID).collect {
-                _state.postValue(ArtistDetailViewState.Loading)
-
                 when (it) {
                     is NetworkResult.Success -> {
                         //set data

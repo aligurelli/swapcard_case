@@ -8,7 +8,7 @@ import com.swapcard.feature.home.databinding.RowArtistBinding
 import com.swarcards.commons.ui.base.BasePagedListAdapter
 import com.swarcards.commons.ui.base.BaseViewHolder
 
-class ArtistAdapter(var clickListener: (Artist) -> Unit ) :
+class ArtistListAdapter(var clickListener: (Artist) -> Unit ) :
     BasePagedListAdapter<Artist>(
         itemsSame = { old, new -> old.id == new.id },
         contentsSame = { old, new -> old == new }

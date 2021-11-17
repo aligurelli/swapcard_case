@@ -5,7 +5,6 @@ import com.swarcards.commons.ui.base.BaseViewState
 sealed class ArtistDetailViewState : BaseViewState {
 
 
-    object Loading : ArtistDetailViewState()
 
     object FETCHED : ArtistDetailViewState()
 

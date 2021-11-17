@@ -5,4 +5,5 @@
     <string name="loading">loading</string>
     <string name="error">error</string>
     <string name="added_into_bookmarks">added to bookmarks</string>
+    <string name="an_error_occured">an error occurred</string>
 </resources>

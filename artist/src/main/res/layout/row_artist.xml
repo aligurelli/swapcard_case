@@ -10,7 +10,7 @@
             type="com.swapcard.aligurelli.core.network.responses.Artist" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="4dp"
@@ -22,28 +22,21 @@
             android:paddingBottom="8dp">
 
 
-            <com.google.android.material.textview.MaterialTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_name"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="@{artist.name}"
                 android:textSize="16sp"
-                android:lines="2"
-                android:maxLines="2"
-                app:autoSizeMinTextSize="12sp"
-                app:autoSizeMaxTextSize="16sp"
-                app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf ="parent"
-                app:lineHeight="18dp"
                 tools:text="Name" />
 
-            <com.google.android.material.textview.MaterialTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_disambiguation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +50,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_name"
                 tools:text="Disambiguation" />
 
-            <com.google.android.material.textview.MaterialTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,6 +65,6 @@
                 tools:text="Type" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </layout>

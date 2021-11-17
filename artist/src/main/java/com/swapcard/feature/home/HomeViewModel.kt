@@ -6,6 +6,8 @@ import com.swapcard.aligurelli.core.database.artistbookmark.BookmarkRepository
 import com.swapcard.aligurelli.core.database.artistbookmark.BookmarkedArtist
 import com.swapcard.aligurelli.core.network.repositories.HomeRepository
 import com.swapcard.aligurelli.core.network.repositories.paging.ArtistsPagingDataSource
+import com.swapcard.aligurelli.core.utils.DEFAULT_PAGE_SIZE
+import com.swapcard.aligurelli.core.utils.DEFAULT_PREFETCHED_DISTANCE
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
@@ -13,16 +15,14 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val homeRepository: HomeRepository, private val bookmarkRepository: BookmarkRepository) : ViewModel() {
 
-    private val AT_SEARCH_SECTION = 0
-
     private var _dataPagingSource: ArtistsPagingDataSource? = null
     private val _requestChannel = ConflatedBroadcastChannel<String>()
 
 
     private val _searchedArtistList = Pager(
         config = PagingConfig(
-            pageSize = 15,
-            prefetchDistance = 2
+            pageSize = DEFAULT_PAGE_SIZE,
+            prefetchDistance = DEFAULT_PREFETCHED_DISTANCE
         ),
         pagingSourceFactory = {
             _dataPagingSource = ArtistsPagingDataSource(

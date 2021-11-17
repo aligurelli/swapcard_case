@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.swapcard.aligurelli.core.ArtistsQuery
 import com.swapcard.aligurelli.core.network.repositories.HomeRepository
 import com.swapcard.aligurelli.core.network.responses.Artist
+import com.swapcard.aligurelli.core.utils.DEFAULT_PAGE_SIZE
 import com.swapcard.aligurelli.core.utils.NetworkResult
 import kotlinx.coroutines.flow.collect
 
@@ -13,9 +14,8 @@ class ArtistsPagingDataSource(
     private val query: String,
 ) : PagingSource<Int, Artist>() {
 
-    var initial = 15
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Artist> {
-        val currentLoadingPageKey = params.key ?: 15
+        val currentLoadingPageKey = params.key ?: DEFAULT_PAGE_SIZE
         return try {
             var response : ArtistsQuery.Data ?= null
 
@@ -39,11 +39,11 @@ class ArtistsPagingDataSource(
 
             //adjust pagination params
             data?.let {
-                val prevKey = if (currentLoadingPageKey == 1) null else currentLoadingPageKey - initial
+                val prevKey = if (currentLoadingPageKey == 1) null else currentLoadingPageKey - DEFAULT_PAGE_SIZE
                 LoadResult.Page(
-                    data = it.subList(if(currentLoadingPageKey == 15) 0 else currentLoadingPageKey.minus(initial),currentLoadingPageKey),
+                    data = it.subList(if(currentLoadingPageKey == DEFAULT_PAGE_SIZE) 0 else currentLoadingPageKey.minus(DEFAULT_PAGE_SIZE),currentLoadingPageKey),
                     prevKey = prevKey,
-                    nextKey = currentLoadingPageKey.plus(initial)
+                    nextKey = currentLoadingPageKey.plus(DEFAULT_PAGE_SIZE)
                 )
             } ?: kotlin.run {
                 LoadResult.Error(Exception("error"))

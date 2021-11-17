@@ -44,18 +44,20 @@ class ArtistDetailFragment :
 
     private fun onStateChanged(viewState: ArtistDetailViewState){
         when (viewState) {
-           /* is ArtistDetailViewState.Loading ->
-               // progressDialog.show(R.string.loading)
             is ArtistDetailViewState.Error ->
-                //progressDialog.dismissWithErrorMessage(R.string.error)*/
+                Snackbar.make(
+                    requireView(),
+                    R.string.an_error_occured,
+                    Snackbar.LENGTH_LONG
+                ).show()
             is ArtistDetailViewState.AddedToFavorite ->
                 Snackbar.make(
                     requireView(),
                     R.string.added_into_bookmarks,
                     Snackbar.LENGTH_LONG
                 ).show()
-           /* is ArtistDetailViewState.FETCHED ->
-                //progressDialog.dismiss()*/
+            is ArtistDetailViewState.FETCHED ->
+                progressDialog.dismiss()
         }
 
 

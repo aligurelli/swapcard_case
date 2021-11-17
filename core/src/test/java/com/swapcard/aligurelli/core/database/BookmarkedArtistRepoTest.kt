@@ -54,4 +54,7 @@ class BookmarkedArtistRepoTest {
         coVerify { bookmarkedArtistDao.insertArtistToBookmarks(capture(artist)) }
         assertEquals(artistToInsert, artist.captured)
     }
+
+
+
 }

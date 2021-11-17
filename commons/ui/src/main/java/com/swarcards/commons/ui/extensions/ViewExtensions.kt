@@ -3,7 +3,10 @@ package com.swarcards.commons.ui.extensions
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.ListAdapter
 import androidx.annotation.CheckResult
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -24,4 +27,5 @@ fun EditText.textChanges(): Flow<CharSequence?> {
         addTextChangedListener(listener)
         awaitClose { removeTextChangedListener(listener) }
     }.onStart { emit(text) }
+
 }
