@@ -6,6 +6,7 @@ import com.swapcard.aligurelli.core.ArtistsQuery
 import com.swapcard.aligurelli.core.network.repositories.HomeRepository
 import com.swapcard.aligurelli.core.network.responses.Artist
 import com.swapcard.aligurelli.core.utils.DEFAULT_PAGE_SIZE
+import com.swapcard.aligurelli.core.utils.ERROR_MESSAGE
 import com.swapcard.aligurelli.core.utils.NetworkResult
 import kotlinx.coroutines.flow.collect
 
@@ -46,7 +47,7 @@ class ArtistsPagingDataSource(
                     nextKey = currentLoadingPageKey.plus(DEFAULT_PAGE_SIZE)
                 )
             } ?: kotlin.run {
-                LoadResult.Error(Exception("error"))
+                LoadResult.Error(Exception(ERROR_MESSAGE))
 
             }
 
@@ -55,9 +56,9 @@ class ArtistsPagingDataSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Artist>): Int = 15
+    override fun getRefreshKey(state: PagingState<Int, Artist>): Int = DEFAULT_PAGE_SIZE
     override val keyReuseSupported: Boolean = true
 
-    private fun getSearchedQueryByPagination(currentLoadingPageKey : Int)  = repository.getSearchedList(query, currentLoadingPageKey)
+    private suspend fun getSearchedQueryByPagination(currentLoadingPageKey : Int)  = repository.getSearchedList(query, currentLoadingPageKey)
 
 }

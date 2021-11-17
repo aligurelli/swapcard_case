@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.swapcard.aligurelli.core.utils.ARTIST_ID
 import com.swapcard.aligurelli.core.utils.GRID_COUNT
+import com.swapcard.aligurelli.core.utils.SEARCH_BOUNCE_IN_MS
 import com.swapcard.feature.home.HomeViewModel
 import com.swapcard.feature.home.R
 import com.swapcard.feature.home.adapter.ArtistListAdapter
@@ -35,8 +36,7 @@ class SearchArtistFragment : BaseFragment<FragmentArtistListBinding, HomeViewMod
             layoutManager = GridLayoutManager(context, GRID_COUNT)
             adapter = searchedArtistListAdapter
         }
-
-        binding.etSearch.textChanges().debounce(500)
+        binding.etSearch.textChanges().debounce(SEARCH_BOUNCE_IN_MS)
             .onEach { viewModel.updateRequest(it?.toString()!!) }
             .launchIn(lifecycleScope)
     }

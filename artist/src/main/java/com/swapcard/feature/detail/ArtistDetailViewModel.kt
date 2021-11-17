@@ -2,22 +2,22 @@ package com.swapcard.feature.detail
 
 import androidx.lifecycle.*
 import com.swapcard.aligurelli.core.database.artistbookmark.BookmarkRepository
-import com.swapcard.aligurelli.core.network.repositories.DetailRepository
-import com.swapcard.aligurelli.core.network.responses.ArtistDetailResponse
+import com.swapcard.aligurelli.core.network.repositories.ArtistDetailRepository
+import com.swapcard.aligurelli.core.network.responses.ArtistDetail
 import com.swapcard.aligurelli.core.utils.NetworkResult
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
 class ArtistDetailViewModel(
-    private val artistDetailRepo: DetailRepository,
+    private val artistArtistDetailRepo: ArtistDetailRepository,
     private val bookmarkRepo: BookmarkRepository
 ) : ViewModel() {
 
     private lateinit var artistID: String
 
-    private val _data = MutableLiveData<ArtistDetailResponse>()
-    val data: LiveData<ArtistDetailResponse>
+    private val _data = MutableLiveData<ArtistDetail>()
+    val data: LiveData<ArtistDetail>
         get() = _data
 
 
@@ -35,11 +35,11 @@ class ArtistDetailViewModel(
     fun getArtistDetail() {
 
         viewModelScope.launch {
-            artistDetailRepo.getArtistDetail(artistID).collect {
+            artistArtistDetailRepo.getArtistDetail(artistID).collect {
                 when (it) {
                     is NetworkResult.Success -> {
                         //set data
-                        _data.value = ArtistDetailResponse(
+                        _data.value = ArtistDetail(
                             id = it.data.node?.fragments?.artistDetailsFragment?.id!!,
                             name = it.data.node?.fragments?.artistDetailsFragment?.name,
                             disambiguation = it.data.node?.fragments?.artistDetailsFragment?.disambiguation,

@@ -5,7 +5,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.swapcard.aligurelli.core.utils.ARTIST_ID
 import com.swapcard.feature.home.R
 import com.swapcard.feature.home.databinding.FragmentDetailBinding
-import com.swapcards.common.view.ProgressBarDialog
 import com.swarcards.commons.ui.base.BaseFragment
 import com.swarcards.commons.ui.extensions.observe
 import com.swarcards.commons.ui.extensions.parsePrimitives
@@ -17,7 +16,6 @@ class ArtistDetailFragment :
 
     override val viewModel: ArtistDetailViewModel by viewModel()
 
-    private val progressDialog by inject<ProgressBarDialog>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +54,6 @@ class ArtistDetailFragment :
                     R.string.added_into_bookmarks,
                     Snackbar.LENGTH_LONG
                 ).show()
-            is ArtistDetailViewState.FETCHED ->
-                progressDialog.dismiss()
         }
 
 

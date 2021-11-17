@@ -5,27 +5,31 @@ import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.api.Operation
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.coroutines.await
+import com.swapcard.aligurelli.core.ArtistDetailQuery
 import com.swapcard.aligurelli.core.ArtistsQuery
-import com.swapcard.aligurelli.core.utils.NetworkBoundRepository
+import com.swapcard.aligurelli.core.utils.DEFAULT_PAGE_SIZE
 import com.swapcard.aligurelli.core.utils.NetworkResult
-import com.swapcard.aligurelli.core.utils.SEARCH_TIME_INTERVAL
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class HomeRepository(private val apolloClient: ApolloClient) {
+class HomeRepository(private val apolloClient: ApolloClient) : BaseRepo() {
 
 
-
-    fun getSearchedList(query : String, first : Int = 15): Flow<NetworkResult<ArtistsQuery.Data>> {
-        return object : NetworkBoundRepository<ArtistsQuery.Data>(){
-            override suspend fun fetchFromRemote(): Response<ArtistsQuery.Data> {
-                return apolloClient.query(ArtistsQuery(query, Input.fromNullable(first))).await()
-            }
-
-        }.asFlow().flowOn(Dispatchers.IO)
-    }
+    suspend fun getSearchedList(query: String, first: Int = DEFAULT_PAGE_SIZE) =
+        flow<NetworkResult<ArtistsQuery.Data>> {
+            emit(
+                safeApiCall {
+                    apolloClient.query(
+                        ArtistsQuery(
+                            query = query,
+                            first = Input.fromNullable(first)
+                        )
+                    ).await()
+                }
+            )
+        }.flowOn(Dispatchers.IO)
 
 
 }

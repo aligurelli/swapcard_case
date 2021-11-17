@@ -6,8 +6,8 @@ import com.swapcard.aligurelli.core.ArtistDetailQuery
 import com.swapcard.aligurelli.core.database.artistbookmark.BookmarkRepository
 import com.swapcard.aligurelli.core.database.artistbookmark.BookmarkedArtist
 import com.swapcard.aligurelli.core.fragment.ArtistDetailsFragment
-import com.swapcard.aligurelli.core.network.repositories.DetailRepository
-import com.swapcard.aligurelli.core.network.responses.ArtistDetailResponse
+import com.swapcard.aligurelli.core.network.repositories.ArtistDetailRepository
+import com.swapcard.aligurelli.core.network.responses.ArtistDetail
 import com.swapcard.aligurelli.core.utils.NetworkResult
 import com.swapcard.feature.rules.CoroutineRule
 import io.mockk.*
@@ -29,7 +29,7 @@ class ArtistDetailViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @MockK(relaxed = true)
-    lateinit var artistDetailRepo: DetailRepository
+    lateinit var artistArtistDetailRepo: ArtistDetailRepository
 
     @MockK(relaxed = true)
     lateinit var bookmarkRepo: BookmarkRepository
@@ -38,14 +38,14 @@ class ArtistDetailViewModelTest {
     lateinit var stateObserver: Observer<ArtistDetailViewState>
 
     @MockK(relaxed = true)
-    lateinit var dataObserver: Observer<ArtistDetailResponse>
+    lateinit var dataObserver: Observer<ArtistDetail>
     lateinit var viewModel: ArtistDetailViewModel
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
         viewModel = ArtistDetailViewModel(
-            artistDetailRepo = artistDetailRepo,
+            artistDetailRepo = artistArtistDetailRepo,
             bookmarkRepo = bookmarkRepo,
         )
         viewModel.setArtistIDToFetch("TEST_ID")
@@ -56,7 +56,7 @@ class ArtistDetailViewModelTest {
     @Test
     fun getArtistDetail_WhenReturnError_NetworkShouldBeErrorState() {
         //given
-        coEvery { artistDetailRepo.getArtistDetail(any()) } returns
+        coEvery { artistArtistDetailRepo.getArtistDetail(any()) } returns
                 flow {
                     emit(
                         NetworkResult.Failed<ArtistDetailQuery.Data>("an error occured")
@@ -95,7 +95,7 @@ class ArtistDetailViewModelTest {
         every { artistDetailQueryData.node?.fragments?.artistDetailsFragment?.rating?.value } returns 0.0
         every { artistDetailQueryData.node?.fragments?.artistDetailsFragment?.rating?.voteCount } returns 1
         coEvery { bookmarkRepo.getBookmarkedArtistWithID(any()) } returns bookmarkedArtist
-        coEvery { artistDetailRepo.getArtistDetail(any()) } returns
+        coEvery { artistArtistDetailRepo.getArtistDetail(any()) } returns
 
                 flow {
                     emit(
@@ -109,7 +109,7 @@ class ArtistDetailViewModelTest {
         //then
         verify {
             dataObserver.onChanged(
-                ArtistDetailResponse(
+                ArtistDetail(
                     id = artistDetailQueryData.node?.fragments?.artistDetailsFragment?.id!!,
                     name = artistDetailQueryData.node?.fragments?.artistDetailsFragment?.name,
                     disambiguation = artistDetailQueryData.node?.fragments?.artistDetailsFragment?.disambiguation,

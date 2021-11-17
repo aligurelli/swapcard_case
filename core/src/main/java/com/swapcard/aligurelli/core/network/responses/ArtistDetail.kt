@@ -1,6 +1,6 @@
 package com.swapcard.aligurelli.core.network.responses
 
-data class ArtistDetailResponse(
+data class ArtistDetail(
      val hasError : Boolean = false,
      val id : String ="",
      val name: String? = null,
