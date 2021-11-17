@@ -16,6 +16,7 @@ object BuildDependenciesVersions {
     const val DATABINDING = "3.1.4"
     const val KOIN = "3.1.3"
     const val APOLLO = "2.5.9"
+    const val NAVIGATION_DYNAMIC_FEATURES = "2.3.5"
 
     // Tests
     const val TEST = "1.3.0"

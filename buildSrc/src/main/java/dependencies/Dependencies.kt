@@ -20,6 +20,7 @@ object Dependencies {
     const val KOIN_COMPOSE = "io.insert-koin:koin-androidx-compose:${BuildDependenciesVersions.KOIN}"
     const val APOLLO = "com.apollographql.apollo:apollo-runtime:${BuildDependenciesVersions.APOLLO}"
     const val APOLLO_COROUTINE = "com.apollographql.apollo:apollo-coroutines-support:${BuildDependenciesVersions.APOLLO}"
+    const val DYNAMIC_NAV = "androidx.navigation:navigation-dynamic-features-fragment:${BuildDependenciesVersions.NAVIGATION_DYNAMIC_FEATURES}"
 
     const val GLIDE = "com.github.bumptech.glide:glide::${BuildDependenciesVersions.GLIDE}"
 }

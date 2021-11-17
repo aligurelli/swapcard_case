@@ -40,11 +40,6 @@ android {
     }
     dynamicFeatures = [':artist']
 
-    sourceSets {
-        getByName("main") {
-            java.srcDir("src/main/kotlin")
-        }
-    }
     compileSdkVersion 31
 }
 
@@ -63,7 +58,7 @@ dependencies {
     implementation(Dependencies.KOIN_COMPOSE)
     implementation(Dependencies.APOLLO)
     implementation(Dependencies.APOLLO_COROUTINE)
-    implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.5'
+    implementation(Dependencies.DYNAMIC_NAV)
 
     debugImplementation(DebugDependencies.LEAKCANARY)
 
